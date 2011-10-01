@@ -3,7 +3,7 @@
     "description": "Helpers for making apps that scaffold stuff",
     "tags": ["scaffold"],
     "author": "Damon Oehlman <damon.oehlman@sidelab.com>",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "main": "lib/scaffolder",
     "engines": { "node": "0.4.x || 0.5.x" },
     
