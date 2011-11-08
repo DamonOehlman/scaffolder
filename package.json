@@ -1,32 +1,30 @@
 {
-    "name": "scaffolder",
-    "description": "Helpers for making apps that scaffold stuff",
-    "tags": ["scaffold"],
-    "author": "Damon Oehlman <damon.oehlman@sidelab.com>",
-    "version": "0.0.2",
-    "main": "lib/scaffolder",
-    "engines": { "node": "0.4.x || 0.5.x" },
-    
-    "dependencies": {
-        "commander": "0.2.x",
-        "ncp": "0.2.x",
-        "out": "x.x.x",
-        "underscore": "1.1.x"
-    },
-    
-    "devDependencies": {
-        "vows": "0.5.x"
-    },
-    
-    "repository": {
-        "type": "git",
-        "url": "http://github.com/DamonOehlman/jandles.git"
-    },
-    
-    "bugs": {
-        "web": "http://github.com/DamonOehlman/jandles/issues"
-    },
-
-    "contributors": [
-    ]
+  "name": "scaffolder",
+  "description": "Helpers for making apps that scaffold stuff",
+  "tags": [
+    "scaffold"
+  ],
+  "author": "Damon Oehlman <damon.oehlman@sidelab.com>",
+  "version": "0.0.3",
+  "main": "lib/scaffolder",
+  "engines": {
+    "node": ">= 0.4.x < 0.7.0"
+  },
+  "dependencies": {
+    "commander": "0.3.x",
+    "ncp": "0.2.x",
+    "out": "x.x.x",
+    "underscore": "1.x.x"
+  },
+  "devDependencies": {
+    "vows": "0.5.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/DamonOehlman/jandles.git"
+  },
+  "bugs": {
+    "url": "http://github.com/DamonOehlman/jandles/issues"
+  },
+  "contributors": []
 }
