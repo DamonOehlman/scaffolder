@@ -5,26 +5,26 @@
     "scaffold"
   ],
   "author": "Damon Oehlman <damon.oehlman@sidelab.com>",
-  "version": "0.0.3",
+  "version": "0.2.0",
   "main": "lib/scaffolder",
   "engines": {
     "node": ">= 0.4.x < 0.7.0"
   },
   "dependencies": {
-    "commander": "0.3.x",
-    "ncp": "0.2.x",
-    "out": "x.x.x",
-    "underscore": "1.x.x"
-  },
-  "devDependencies": {
-    "vows": "0.5.x"
+    "async": ">= 0.1.0",
+    "debug": ">= 0.1.0",
+    "commander": ">= 0.5.0",
+    "ncp": ">= 0.2.3",
+    "out": ">= 0.2.0",
+    "revalidator": ">= 0.1.0",
+    "underscore": ">= 1.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/DamonOehlman/jandles.git"
+    "url": "git://github.com/DamonOehlman/scaffolder.git"
   },
   "bugs": {
-    "url": "http://github.com/DamonOehlman/jandles/issues"
+    "url": "http://github.com/DamonOehlman/scaffolder/issues"
   },
   "contributors": []
 }
