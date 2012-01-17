@@ -16,7 +16,7 @@
     "commander": ">= 0.5.0",
 	"mkdirp": "0.2.x",
     "ncp": ">= 0.2.3",
-    "out": ">= 0.2.0",
+    "out": ">= 0.3.1",
     "revalidator": ">= 0.1.0",
     "underscore": ">= 1.0.0"
   },
