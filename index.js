@@ -1,5 +1,6 @@
 var events = require('events'),
     util = require('util'),
+    path = require('path'),
     mkdirp = require('mkdirp'),
     ncp = require('ncp').ncp;
     
