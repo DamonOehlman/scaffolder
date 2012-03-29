@@ -1,4 +1,5 @@
-var events = require('events'),
+var debug = require('debug')('scaffolder'),
+    events = require('events'),
     util = require('util'),
     path = require('path'),
     mkdirp = require('mkdirp'),
@@ -50,6 +51,8 @@ Scaffolder.prototype.copy = function(src, dest, callback) {
     this.getPath(function(basePath) {
         src = path.resolve(basePath, src);
         
+        debug('attempting to copy files from ' + src + ' ==> ' + dest);
+
         // if the path exists, copy the files
         path.exists(src, function(exists) {
             if (exists) {

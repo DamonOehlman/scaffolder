@@ -5,14 +5,15 @@
     "scaffold"
   ],
   "author": "Damon Oehlman <damon.oehlman@sidelab.com>",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "main": "lib/scaffolder",
   "engines": {
     "node": ">= 0.4.x < 0.7.0"
   },
   "dependencies": {
-    "mkdirp": "0.2.x",
-    "ncp": ">= 0.2.3"
+    "debug": "*",
+    "mkdirp": "0.3.x",
+    "ncp": "0.2.x"
   },
   "repository": {
     "type": "git",
