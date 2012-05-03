@@ -1,9 +1,9 @@
 # Scaffolder
 
-Node package designed to make the process of creating node apps that scaffold and build stuff simpler.  Not that it's complicated, but you do end up typing the same stuff again and again...
+Scaffolder is a node package that is designed to make the process of making node CLI applications simpler.  The project is definitely a work in progress, and pull requests are definitely welcome.
 
 ## Similar Projects
 
 Some other projects providing similar functionality are:
 
-- [scaffoldit](https://github.com/crcn/scaffoldit) - Really solid looking project - may well retire scaffolder in favour of this one...
+- [scaffoldit](https://github.com/crcn/node-scaffoldit) - Really solid looking project - may well retire scaffolder in favour of this one...

@@ -1,0 +1,1 @@
+exports.description = 'A test action';
