@@ -6,14 +6,14 @@ var scaffolder = require('../'),
     scaffolderOpts = {
         argv: [],
         silent: true,
-        actionPath: path.resolve(__dirname, 'test-actions')
+        commandPath: path.resolve(__dirname, 'test-commands')
     };
 
 describe('scaffolder action loader tests', function() {
     it('should be able to load actions', function(done) {
         scaffolder(scaffolderOpts).on('ready', function() {
-            expect(this.actions).to.be.ok();
-            expect(this.actions.test).to.be.ok();
+            expect(this.commands).to.be.ok();
+            expect(this.commands.test).to.be.ok();
             done();
         });
     });
