@@ -8,7 +8,7 @@ var scaffolder = require('../'),
 
 describe('scaffolder action loader tests', function() {
     it('should be able to load actions', function(done) {
-        scaffolder(module, scaffolderOpts).on('ready', function() {
+        scaffolder(scaffolderOpts).on('ready', function() {
             expect(this.actions).to.be.ok();
             expect(this.actions.test).to.be.ok();
             done();

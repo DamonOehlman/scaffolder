@@ -5,7 +5,7 @@ var scaffolder = require('../'),
 
 describe('scaffolder initialization tests', function() {
     it('should be able to detect the package path for the current app', function(done) {
-        scaffolder(module).on('ready', function() {
+        scaffolder().on('ready', function() {
             expect(this.srcPath).to.equal(srcPath);
             done();
         });
