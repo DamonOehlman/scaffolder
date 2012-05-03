@@ -5,7 +5,7 @@
     "scaffold"
   ],
   "author": "Damon Oehlman <damon.oehlman@sidelab.com>",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "main": "lib/scaffolder",
   "engines": {
     "node": ">= 0.4.x < 0.7.0"
@@ -13,16 +13,23 @@
   "dependencies": {
     "debug": "*",
     "mkdirp": "0.3.x",
-    "ncp": "0.2.x"
+    "ncp": "0.2.x",
+    "nopt": "1.0.x",
+    "out": "0.4.x"
   },
+  "devDependencies": {
+    "mocha": "1.0.x",
+    "expect.js": "0.1.x"
+  },
+  
   "repository": {
     "type": "git",
     "url": "git://github.com/DamonOehlman/scaffolder.git"
   },
+  
   "bugs": {
     "url": "http://github.com/DamonOehlman/scaffolder/issues"
   },
-  "contributors": [],
-  "devDependencies": {},
-  "optionalDependencies": {}
+
+  "contributors": []
 }
