@@ -13,6 +13,7 @@
   "dependencies": {
     "async": "0.1.x",
     "debug": "*",
+    "handlebars": "1.0.5beta",
     "mkdirp": "0.3.x",
     "ncp": "0.2.x",
     "nopt": "1.0.x",
