@@ -54,8 +54,14 @@ These arguments are defined as per standard [nopt](https://github.com/isaacs/nop
 
 Once defined in the `args` export, any arguments that are parsed successfully from `process.argv` will be provided as part of the `opts` object that is passed into the `run` function declared in the command handler.
 
-## Similar Projects
+## Scaffolder Helpers
 
-Some other projects providing similar functionality are:
+When running an action, scaffolder provides a number of helper methods for performing common tasks.
 
-- [scaffoldit](https://github.com/crcn/node-scaffoldit) - Really solid looking project - may well retire scaffolder in favour of this one...
+### Copying Files
+
+```js
+scaffolder.copy(src, dst, callback);
+```
+
+The `copy` method provides an interface to the really useful [ncp](https://github.com/AvianFlu/ncp) which can be used to copy all the files in `src` to `dst`.  The scaffolder `copy` method also ensures that the `dst` directory exists before starting the copy operation.
