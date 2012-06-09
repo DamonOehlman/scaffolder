@@ -65,3 +65,5 @@ scaffolder.copy(src, dst, callback);
 ```
 
 The `copy` method provides an interface to the really useful [ncp](https://github.com/AvianFlu/ncp) which can be used to copy all the files in `src` to `dst`.  The scaffolder `copy` method also ensures that the `dst` directory exists before starting the copy operation.
+
+__NOTE:__ The `src` path is relative to the npm package that has incorporated scaffolder (unless absolute), but `dst` path is relative to the cwd.
