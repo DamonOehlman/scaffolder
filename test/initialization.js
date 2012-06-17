@@ -35,4 +35,43 @@ describe('scaffolder initialization tests', function() {
             done();
         });
     });
+    
+    it('should be able to include an initialization function that will be called before ready', function(done) {
+        var initialized = false,
+            s = scaffolder(_.extend({
+                init: function(callback) {
+                    initialized = true;
+                    callback();
+                }
+            }));
+            
+        s.on('ready', function() {
+            expect(initialized).to.be.ok();
+            done();
+        });
+    });
+    
+    it('should be able to run multiple initialization functions', function(done) {
+        var initA = false,
+            initB = false,
+            s = scaffolder(_.extend({
+                init: [
+                    function(callback) {
+                        initA = true;
+                        callback();
+                    },
+                    
+                    function(callback) {
+                        initB = true;
+                        callback();
+                    }
+                ]
+            }));
+            
+        s.on('ready', function() {
+            expect(initA).to.be.ok();
+            expect(initB).to.be.ok();
+            done();
+        });
+    });
 });
