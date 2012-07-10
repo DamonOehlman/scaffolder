@@ -7,6 +7,7 @@ var async = require('async'),
     nopt = require('nopt'),
     out = require('out'),
     read = require('read'),
+    squirrel = require('squirrel'),
     _ = require('underscore'),
     findPackage = require('./helpers/find-package'),
     filters = require('./helpers/filters'),
@@ -34,6 +35,12 @@ function Scaffolder(opts) {
     
     this.targetModule = opts.module;
     this.ready = false;
+    
+    // initialise the squirrel allowInstall option to 'prompt'
+    opts.allowInstall = typeof opts.allowInstall != 'undefined' ? opts.allowInstall : 'prompt';
+    
+    // save the opts for passing through to other objects
+    this.opts = opts;
     
     // if we are not running in silent mode, then handle errors by pushing them to output
     if (! opts.silent) {
@@ -245,6 +252,17 @@ Scaffolder.prototype.run = function(name, opts, callback) {
 
     // run the action handler
     command.run.call(this, opts, callback);
+};
+
+Scaffolder.prototype.squirrel = function(requirements, opts, callback) {
+    // remap args if required
+    if (typeof opts == 'function') {
+        callback = opts;
+        opts = {};
+    }
+
+    // call squirrel, extending the opts with the defaults
+    squirrel(requirements, _.extend({}, this.opts, opts), callback);
 };
 
 // patch in plugins for the prototype

@@ -2,7 +2,8 @@ var assert = require('assert'),
     path = require('path'),
     scaffolder = require('../')({
         assetPath: path.resolve(__dirname, 'assets'),
-        runMain: false
+        runMain: false,
+        allowInstall: true
     });
 
 describe('asset loading tests', function() {

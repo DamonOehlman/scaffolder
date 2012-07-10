@@ -1,12 +1,11 @@
-var squirrel = require('squirrel');
-
 module.exports = function(src, dest, callback) {
     var scaffolder = this;
 
     // create a dummy callback if we don't have one
     callback = callback || function() {};
     
-    squirrel(['ncp', 'mkdirp'], { allowInstall: 'prompt' }, function(err, ncp, mkdirp) {
+    // use the scaffolder to squirrel in the required modules
+    this.squirrel(['ncp', 'mkdirp'], function(err, ncp, mkdirp) {
         if (err) return callback(err);
         
         // get the source path for the package

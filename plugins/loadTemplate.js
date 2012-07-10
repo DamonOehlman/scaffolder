@@ -1,5 +1,3 @@
-var squirrel = require('squirrel');
-
 module.exports = function(templateFile, opts, callback) {
     var scaffolder = this;
     
@@ -16,7 +14,7 @@ module.exports = function(templateFile, opts, callback) {
     opts.engine = opts.engine || 'handlebars';
 
     // use squirrel to load the requested template engine
-    squirrel(opts.engine, { allowInstall: 'prompt' }, function(err, engine) {
+    this.squirrel(opts.engine, function(err, engine) {
         if (err) return callback(err);
         
         // read the file
