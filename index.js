@@ -4,14 +4,13 @@ var async = require('async'),
     util = require('util'),
     fs = require('fs'),
     path = require('path'),
-    mkdirp = require('mkdirp'),
     nopt = require('nopt'),
-    ncp = require('ncp').ncp,
     out = require('out'),
     read = require('read'),
     _ = require('underscore'),
     findPackage = require('./helpers/find-package'),
     filters = require('./helpers/filters'),
+    pluginFiles = fs.readdirSync(path.resolve(__dirname, 'plugins')).filter(filters.jsOnly),
     rePathDelim = /[\/\\]/,
     _exists = fs.exists || path.exists,
     
@@ -88,37 +87,6 @@ function Scaffolder(opts) {
 }
 
 util.inherits(Scaffolder, events.EventEmitter);
-
-Scaffolder.prototype.copy = function(src, dest, callback) {
-    var scaffolder = this;
-    
-    // create a dummy callback if we don't have one
-    callback = callback || function() {};
-    
-    // get the source path for the package
-    this.getPath(function(basePath) {
-        src = path.resolve(basePath, src);
-        
-        debug('attempting to copy files from ' + src + ' ==> ' + dest);
-
-        // if the path exists, copy the files
-        _exists(src, function(exists) {
-            if (exists) {
-                mkdirp(dest, function(err) {
-                    if (err) {
-                        callback(err);
-                    }
-                    else {
-                        ncp(src, dest, callback);
-                    }
-                });
-            }
-            else {
-                callback(new Error('no source files'));
-            }
-        });
-    });
-};
 
 Scaffolder.prototype.getPath = function(callback) {
     var scaffolder = this;
@@ -294,6 +262,10 @@ Scaffolder.prototype.run = function(name, opts, callback) {
     command.run.call(this, opts, callback);
 };
 
+// patch in plugins for the prototype
+pluginFiles.forEach(function(pluginFile) {
+    Scaffolder.prototype[path.basename(pluginFile, '.js')] = require('./plugins/' + pluginFile);
+});
 
 exports = module.exports = function(opts, initFn) {
     var scaffolder,
