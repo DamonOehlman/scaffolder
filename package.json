@@ -34,7 +34,7 @@
     "url": "http://github.com/DamonOehlman/scaffolder/issues"
   },
   "scripts": {
-    "test": "mocha --reporter spec"
+    "test": "./node_modules/mocha/bin/mocha --reporter spec --timeout 10000"
   },
   "contributors": [],
   "optionalDependencies": {}
