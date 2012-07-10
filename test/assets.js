@@ -17,4 +17,13 @@ describe('asset loading tests', function() {
             done(err);
         });
     });
+    
+    it('should be able to load a template (using the default engine)', function(done) {
+        scaffolder.loadTemplate('test-template.txt', function(err, template) {
+            assert.ifError(err);
+            assert.equal(typeof template, 'function');
+            assert.equal(template({ val: 'test' }), 'test');
+            done(err);
+        });
+    });
 });

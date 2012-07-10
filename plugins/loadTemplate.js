@@ -1,3 +1,5 @@
+var squirrel = require('squirrel');
+
 module.exports = function(templateFile, opts, callback) {
     var scaffolder = this;
     
@@ -19,10 +21,20 @@ module.exports = function(templateFile, opts, callback) {
         
         // read the file
         scaffolder.readFile(templateFile, 'utf8', function(err, content) {
+            var template;
+            
             if (err) return callback(err);
             
+            // first look for a compile function in the template engine
+            if (typeof engine == 'function') {
+                template = engine(content);
+            }
+            else if (typeof engine == 'object' && typeof engine.compile == 'function') {
+                template = engine.compile(content);
+            }
+            
             // otherwise, generate the template
-            callback(null, engine(content));
+            callback(template ? null : new Error('No template function found for engine "' + opts.engine + '"'), template);
         });
     });
 };
