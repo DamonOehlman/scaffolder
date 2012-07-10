@@ -29,9 +29,6 @@ function Scaffolder(opts) {
     // ensure we have options
     opts = opts || {};
     
-    // initialise the default action path
-    this.commandPath = opts.commandPath || path.join('lib', 'commands');
-    
     // initialise the empty commands array
     this.commands = {};
     
@@ -60,28 +57,33 @@ function Scaffolder(opts) {
     if (this.targetModule) {
         debug('crawling tree to find package.json, starting at: ' + this.targetModule.filename);
         findPackage(this.targetModule.filename, function(err, srcPath) {
-            if (! err) {
-                var initializers = [
-                    scaffolder.loadPackage.bind(scaffolder),
-                    scaffolder.loadActions.bind(scaffolder)
-                ].concat(opts.init || []);
-                
-                scaffolder.srcPath = srcPath;
-                
-                // load the package info
-                async.parallel(initializers, function(err) {
-                    if (! err) {
-                        scaffolder.ready = true;
-                        scaffolder.emit('ready');
-                    }
-                    else {
-                        scaffolder.emit('error', err);
-                    }
-                });
-            }
-            else {
-                scaffolder.emit('error', err);
-            }
+            var initializers = [
+                scaffolder.loadPackage.bind(scaffolder),
+                scaffolder.loadActions.bind(scaffolder)
+            ].concat(opts.init || []);
+            
+            // if we encountered an error, then emit an error event and abort processing
+            if (err) return scaffolder.emit('error', err);
+            
+            // initialise the default asset path
+            scaffolder.assetPath = opts.assetPath || path.resolve(srcPath, 'assets');
+            
+            // initialise the default command path
+            scaffolder.commandPath = opts.commandPath || path.resolve(srcPath, 'lib', 'commands');
+            
+            // initialise the scaffolder srcPath
+            scaffolder.srcPath = srcPath;
+            
+            // load the package info
+            async.parallel(initializers, function(err) {
+                if (! err) {
+                    scaffolder.ready = true;
+                    scaffolder.emit('ready');
+                }
+                else {
+                    scaffolder.emit('error', err);
+                }
+            });
         });
     }
 }
@@ -293,7 +295,9 @@ exports = module.exports = function(opts, initFn) {
         // run the main function 
         // if an init function has been passed, that will run
         // otherwise commands will be run if they are specified on the cli
-        scaffolder.main(opts, initFn);
+        if (typeof opts.runMain == 'undefined' || opts.runMain) {
+            scaffolder.main(opts, initFn);
+        }
     });
     
     return scaffolder;
