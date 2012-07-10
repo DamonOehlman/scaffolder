@@ -1,13 +1,15 @@
 var assert = require('assert'),
     path = require('path'),
-    scaffolder = require('../')({
-        assetPath: path.resolve(__dirname, 'assets'),
-        runMain: false,
-        allowInstall: true
-    });
+    scaffolder;
 
 describe('asset loading tests', function() {
     before(function(done) {
+        scaffolder = require('../')({
+            assetPath: path.resolve(__dirname, 'assets'),
+            runMain: false,
+            allowInstall: true
+        });
+        
         scaffolder.on('ready', done);
     });
     
