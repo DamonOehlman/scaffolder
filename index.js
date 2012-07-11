@@ -18,7 +18,9 @@ var async = require('async'),
     // define the core commands
     coreCommands = {
         known: {
-            'silent': Boolean
+            'silent': Boolean,
+            'help': Boolean,
+            'version': Boolean
         },
         
         shorthand: {}
@@ -133,7 +135,7 @@ Scaffolder.prototype.loadActions = function(callback) {
                 command = require(commandModule);
             }
             catch (e) {
-                debug('failed loading action module: ' + commandModule);
+                debug('failed loading action module: ' + commandModule, e);
                 reqErr = reqErr || new Error('Unable to load action module: ' + commandModule);
             }
 
@@ -168,14 +170,15 @@ Scaffolder.prototype.loadPackage = function(callback) {
 };
 
 Scaffolder.prototype.main = function(opts, handler) {
-    var scaffolder = this;
+    var scaffolder = this,
+        runCommand = true;
     
     // if we have no arguments, then check the command line args
     if (typeof opts == 'function') {
         handler = opts;
         opts = {};
     }
-
+    
     // get the commands list
     opts.commands = opts.commands || (opts.argv || {}).remain || [];
     
@@ -203,10 +206,28 @@ Scaffolder.prototype.main = function(opts, handler) {
     }
     // otherwise, run each of the specified commands
     else {
-        debug('running commands: ', opts.commands);
-        async.mapSeries(opts.commands, scaffolder.run.bind(scaffolder), function(err, results) {
-            scaffolder.emit(err ? 'error' : 'done', err, results);
+        // check if one of the help, version, etc flags has been provided
+        ['help', 'version'].forEach(function(flag) {
+            if (opts[flag]) {
+                scaffolder[flag].call(scaffolder, opts.commands, function(err, output) {
+                    if (! err) {
+                        scaffolder.out(output);
+                    }
+
+                    scaffolder.emit(err ? 'error' : 'done', err);
+                });
+                
+                // set the run command flag to false
+                runCommand = false;
+            }
         });
+
+        if (runCommand) {
+            debug('running commands: ', opts.commands);
+            async.mapSeries(opts.commands, scaffolder.run.bind(scaffolder), function(err, results) {
+                scaffolder.emit(err ? 'error' : 'done', err, results);
+            });
+        }
     }
 };
 
@@ -295,7 +316,9 @@ exports = module.exports = function(opts, initFn) {
     opts.defaultShorthand = _.extend(opts.defaultShorthand || {}, coreCommands.shorthand);
     
     // extend the opts by parsing with nopt
-    opts = _.extend({}, opts, nopt(opts.defaultArgs, opts.defaultShorthand, opts.argv, opts.startArg));
+    if (typeof opts.parseOpts == 'undefined' || opts.parseOpts) {
+        opts = _.extend({}, opts, nopt(opts.defaultArgs, opts.defaultShorthand, opts.argv, opts.startArg));
+    }
     
     // initialise the module of the options
     opts.module = opts.module || module.parent;

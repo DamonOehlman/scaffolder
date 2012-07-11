@@ -13,7 +13,7 @@ module.exports = function(src, dest, callback) {
             src = path.resolve(basePath, src);
 
             debug('attempting to copy files from ' + src + ' ==> ' + dest);
-
+            
             // if the path exists, copy the files
             _exists(src, function(exists) {
                 if (exists) {
