@@ -150,22 +150,37 @@ Scaffolder.prototype.loadActions = function(callback) {
     });
 };
 
-Scaffolder.prototype.loadPackage = function(callback) {
-    var scaffolder = this;
+Scaffolder.prototype.loadPackage = function(targetPath, callback) {
+    var scaffolder = this,
+        updatePackageData = false,
+        packageData;
+
+    // if the targetPath is a function, then default to the source path
+    if (typeof targetPath == 'function') {
+        callback = targetPath;
+        targetPath = this.srcPath;
+        updatePackageData = true;
+    }
+    
     
     // load the package.json file from the specified directory
-    fs.readFile(path.join(this.srcPath, 'package.json'), 'utf8', function(err, data) {
+    fs.readFile(path.join(targetPath, 'package.json'), 'utf8', function(err, data) {
         // if we read the file successfully, then parse it
         if (! err) {
             try {
-                scaffolder.packageData = JSON.parse(data);
+                packageData = JSON.parse(data);
             }
             catch(e) {
                 err = new Error('Unable to parse package.json');
             }
         }
         
-        callback(err);
+        // if we are using the core package data (sourced from this.srcPath), then update now
+        if (packageData && updatePackageData) {
+            scaffolder.packageData = packageData;
+        }
+        
+        callback(err, packageData);
     });
 };
 

@@ -1,4 +1,5 @@
-var scaffolder = require('../'),
+var assert = require('assert'),
+    scaffolder = require('../'),
     path = require('path'),
     expect = require('expect.js'),
     srcPath = path.resolve(__dirname, '..'),
@@ -72,6 +73,19 @@ describe('scaffolder initialization tests', function() {
             expect(initA).to.be.ok();
             expect(initB).to.be.ok();
             done();
+        });
+    });
+    
+    it('should be able to load package data', function(done) {
+        var s = scaffolder();
+        
+        s.on('ready', function() {
+            s.loadPackage(function(err, data) {
+                assert.ifError(err);
+                assert(data);
+                
+                done(err);
+            });
         });
     });
 });
