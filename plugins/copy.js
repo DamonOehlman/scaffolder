@@ -1,3 +1,8 @@
+var debug = require('debug')('scaffolder'),
+    path = require('path'),
+    fs = require('fs'),
+    _exists = fs.exists || path.exists;
+
 module.exports = function(src, dest, callback) {
     var scaffolder = this;
 
@@ -22,7 +27,7 @@ module.exports = function(src, dest, callback) {
                             callback(err);
                         }
                         else {
-                            ncp(src, dest, callback);
+                            ncp.ncp(src, dest, callback);
                         }
                     });
                 }
