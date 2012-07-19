@@ -198,6 +198,11 @@ Scaffolder.prototype.main = function(opts, handler) {
         opts.commands = [opts.commands];
     }
     
+    // filter out missing commands
+    opts.commands = (opts.commands || []).filter(function(command) {
+        return scaffolder.commands[command];
+    });
+    
     // if we have been provided a specific handler then run that
     if (handler) {
         handler.call(scaffolder, opts, function(err) {
@@ -221,7 +226,7 @@ Scaffolder.prototype.main = function(opts, handler) {
                 runCommand = false;
             }
         });
-
+        
         if (runCommand) {
             debug('running commands: ', opts.commands);
             async.mapSeries(opts.commands, scaffolder.run.bind(scaffolder), function(err, results) {
@@ -270,7 +275,10 @@ Scaffolder.prototype.run = function(name, opts, callback) {
       opts.argv, 
       opts.startArg
     ));
-
+    
+    // remove handled commands from the list
+    opts.argv.remain = _.difference(opts.argv.remain, Object.keys(this.commands));
+    
     // run the action handler
     command.run.call(this, opts, callback);
 };
