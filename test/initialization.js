@@ -1,7 +1,6 @@
 var assert = require('assert'),
     scaffolder = require('../'),
     path = require('path'),
-    expect = require('expect.js'),
     srcPath = path.resolve(__dirname, '..'),
     scaffolderOpts = {
         argv: [],
@@ -12,7 +11,7 @@ var assert = require('assert'),
 describe('scaffolder initialization tests', function() {
     it('should be able to detect the package path for the current app', function(done) {
         scaffolder(scaffolderOpts).on('ready', function() {
-            expect(this.srcPath).to.equal(srcPath);
+            assert.equal(this.srcPath, srcPath);
             done();
         });
     });
@@ -20,7 +19,7 @@ describe('scaffolder initialization tests', function() {
     it('should be able to map an object onto the scaffolder', function(done) {
         var s = scaffolder(_.extend({ test: true }, scaffolderOpts));
         s.on('ready', function() {
-            expect(this.test).to.equal(true);
+            assert.equal(this.test, true);
             done();
         });
     });
@@ -31,8 +30,8 @@ describe('scaffolder initialization tests', function() {
         }, scaffolderOpts));
         
         s.on('ready', function() {
-            expect(typeof this.test).to.equal('function');
-            expect(this.test()).to.equal(true);
+            assert.equal(typeof this.test, 'function');
+            assert.equal(this.test(), true);
             done();
         });
     });
@@ -47,7 +46,7 @@ describe('scaffolder initialization tests', function() {
             }));
             
         s.on('ready', function() {
-            expect(initialized).to.be.ok();
+            assert(initialized);
             done();
         });
     });
@@ -70,8 +69,8 @@ describe('scaffolder initialization tests', function() {
             }));
             
         s.on('ready', function() {
-            expect(initA).to.be.ok();
-            expect(initB).to.be.ok();
+            assert(initA);
+            assert(initB);
             done();
         });
     });

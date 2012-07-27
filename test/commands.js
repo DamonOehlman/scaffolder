@@ -1,26 +1,25 @@
-var scaffolder = require('../'),
+var assert = require('assert'),
+    scaffolder = require('../'),
     path = require('path'),
-    expect = require('expect.js'),
     _ = require('underscore'),
     srcPath = path.resolve(__dirname, '..'),
-    scaffolderOpts = {
-        argv: [],
-        silent: true,
-        commandPath: path.resolve(__dirname, 'test-commands')
-    };
+    scaffolderOpts = require('./helpers/opts');
 
 describe('scaffolder action loader tests', function() {
     it('should be able to load actions', function(done) {
         scaffolder(scaffolderOpts).on('ready', function() {
-            expect(this.commands).to.be.ok();
-            expect(this.commands.test).to.be.ok();
+            assert(this.commands);
+            assert(this.commands.test);
             done();
         });
     });
     
     it('should be able to run the test action', function(done) {
         scaffolder(_.extend({}, scaffolderOpts, { commands: ['test'] })).on('done', function(err, results) {
-            expect(results).to.contain('ok');
+            assert.ifError(err);
+            assert(results);
+            assert(results[0] === 'ok');
+            
             done(err);
         });
     });

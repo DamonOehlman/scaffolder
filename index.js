@@ -194,8 +194,21 @@ Scaffolder.prototype.main = function(opts, handler) {
         opts = {};
     }
     
+    // create a copy of the opts so changes don't get pushed back to the original object
+    opts = _.clone(opts);
+    
     // get the commands list
     opts.commands = opts.commands || (opts.argv || {}).remain || [];
+    
+    // if commands is not an array, then make it one
+    if (! Array.isArray(opts.commands)) {
+        opts.commands = [opts.commands];
+    }
+    
+    // filter out missing commands
+    opts.commands = (opts.commands || []).filter(function(command) {
+        return scaffolder.commands[command];
+    });
     
     // use the default commands if we have not parsed out valid commands
     if (Array.isArray(opts.commands) && opts.commands.length === 0) {
@@ -207,16 +220,11 @@ Scaffolder.prototype.main = function(opts, handler) {
             return scaffolder.commands[command];
         });
     }
-
-    // if commands is not an array, then make it one
-    if (! Array.isArray(opts.commands)) {
-        opts.commands = [opts.commands];
-    }
     
-    // filter out missing commands
-    opts.commands = (opts.commands || []).filter(function(command) {
-        return scaffolder.commands[command];
-    });
+    debug('handler = ' + handler + ', help = ' + opts.help + ', version = ' + opts.version + ', commands to run: ', opts.commands);
+
+    // if we have no commands and no handler, then set the help flag
+    opts.help = opts.help || (opts.commands.length === 0 && (! handler));
     
     // if we have been provided a specific handler then run that
     if (handler) {

@@ -1,4 +1,5 @@
-var _ = require('underscore');
+var debug = require('debug')('scaffolder'),
+    _ = require('underscore');
 
 module.exports = function(commandList, callback) {
     var command, helpText = '';
@@ -13,6 +14,7 @@ module.exports = function(commandList, callback) {
         helpText = command.help || command.description;
     }
     else {
+        debug('generating help for commands: ', Object.keys(this.commands));
         helpText = 'TODO: list the commands';
     }
     
