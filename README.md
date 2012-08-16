@@ -54,6 +54,26 @@ These arguments are defined as per standard [nopt](https://github.com/isaacs/nop
 
 Once defined in the `args` export, any arguments that are parsed successfully from `process.argv` will be provided as part of the `opts` object that is passed into the `run` function declared in the command handler.
 
+## Overriding Scaffolder Defaults
+
+When scaffolder is run (using `require('scaffolder')()`) a number of default options are passed through, but these can be overriden by providing an options object.  The defaults of this options object are shown below:
+
+```js
+require('scaffolder')({
+	// an array of default command strings that will attempt to be invoked if no options are provided
+	defaultCommands: [],	
+
+	// provide any default args that individual commands will incorporate / overwrite
+	defaultArgs: {},
+
+	// default nopt shorthand options	
+	defaultShorthand: {},
+
+	// the path the scaffolder commands will be loaded from
+	commandPath: '', // defaults to the lib/commands folder of the project implementing scaffolder
+});
+```
+
 ## Scaffolder Helpers
 
 When running an action, scaffolder provides a number of helper methods for performing common tasks.
