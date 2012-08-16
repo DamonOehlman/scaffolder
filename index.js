@@ -66,10 +66,12 @@ function Scaffolder(opts) {
     if (this.targetModule) {
         debug('crawling tree to find package.json, starting at: ' + this.targetModule.filename);
         findPackage(this.targetModule.filename, function(err, srcPath) {
-            var initializers = [
-                scaffolder.loadPackage.bind(scaffolder),
-                scaffolder.loadActions.bind(scaffolder)
-            ].concat(opts.init || []);
+            var initializers = [scaffolder.loadPackage, scaffolder.loadActions].concat(opts.init || []);
+
+            // bind each of the initializers to the scaffolder instance
+            initializers = initializers.map(function(initializer) {
+                return initializer.bind(scaffolder);
+            });
             
             // if we encountered an error, then emit an error event and abort processing
             if (err) return scaffolder.emit('error', err);
@@ -139,7 +141,7 @@ Scaffolder.prototype.loadActions = function(callback) {
                 reqErr = reqErr || new Error('Unable to load action module: ' + commandModule);
             }
 
-            // if we loaded the action succesfully, then add a few extra details and load 
+            // if we loaded the action succesfully, then add a few extra details and load
             if (command) {
                 command.name = command.name || path.basename(file, '.js');
                 scaffolder.commands[command.name] = command;
@@ -294,8 +296,8 @@ Scaffolder.prototype.run = function(name, opts, callback) {
     // parse the command line with reference to the specified command
     opts = _.extend({}, opts, nopt(
       _.extend({}, opts.defaultArgs, command.args),
-      _.extend({}, opts.defaultShorthand, command.shorthand), 
-      opts.argv, 
+      _.extend({}, opts.defaultShorthand, command.shorthand),
+      opts.argv,
       opts.startArg
     ));
     
@@ -364,7 +366,7 @@ exports = module.exports = function(opts, initFn) {
     scaffolder.once('ready', function() {
         debug('scaffolder ready, running main entry point');
         
-        // run the main function 
+        // run the main function
         // if an init function has been passed, that will run
         // otherwise commands will be run if they are specified on the cli
         if (typeof opts.runMain == 'undefined' || opts.runMain) {
