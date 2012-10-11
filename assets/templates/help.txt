@@ -1,0 +1,7 @@
+<%= packageData.name %> v<%= packageData.version %>:
+
+<% if (packageData.description) { %> <%= packageData.description %><% } %>
+
+commands:
+<% _.each(commands, function(command, name) { %>
+ <%= _.rpad(name + ':', 14)  %><%= command.desc %> <% }); %>

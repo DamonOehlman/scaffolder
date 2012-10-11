@@ -213,7 +213,7 @@ Scaffolder.prototype.main = function(opts, handler) {
     });
     
     // use the default commands if we have not parsed out valid commands
-    if (Array.isArray(opts.commands) && opts.commands.length === 0) {
+    if (Array.isArray(opts.commands) && opts.commands.length === 0 && (! opts.help)) {
         debug('no commands specified, attempting to use default commands: ', opts.defaultCommands);
         
         // return only default commands that actually exist
