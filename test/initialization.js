@@ -39,7 +39,7 @@ describe('scaffolder initialization tests', function() {
     it('should be able to include an initialization function that will be called before ready', function(done) {
         var initialized = false,
             s = scaffolder(_.extend({
-                init: function(callback) {
+                init: function(opts, callback) {
                     initialized = true;
                     callback();
                 }
@@ -56,12 +56,12 @@ describe('scaffolder initialization tests', function() {
             initB = false,
             s = scaffolder(_.extend({
                 init: [
-                    function(callback) {
+                    function(opts, callback) {
                         initA = true;
                         callback();
                     },
                     
-                    function(callback) {
+                    function(opts, callback) {
                         initB = true;
                         callback();
                     }

@@ -70,7 +70,7 @@ function Scaffolder(opts) {
 
             // bind each of the initializers to the scaffolder instance
             initializers = initializers.map(function(initializer) {
-                return initializer.bind(scaffolder);
+                return initializer.bind(scaffolder, opts);
             });
             
             // if we encountered an error, then emit an error event and abort processing
@@ -114,7 +114,7 @@ Scaffolder.prototype.getPath = function(callback) {
     }
 };
 
-Scaffolder.prototype.loadActions = function(callback) {
+Scaffolder.prototype.loadActions = function(opts, callback) {
     // determine the action path
     var commandPath = path.resolve(this.srcPath, this.commandPath),
         scaffolder = this;
@@ -152,19 +152,20 @@ Scaffolder.prototype.loadActions = function(callback) {
     });
 };
 
-Scaffolder.prototype.loadPackage = function(targetPath, callback) {
+Scaffolder.prototype.loadPackage = function(targetPath, opts, callback) {
     var scaffolder = this,
         updatePackageData = false,
         packageData;
 
-    // if the targetPath is a function, then default to the source path
-    if (typeof targetPath == 'function') {
-        callback = targetPath;
+    // if the target path is not a string, then bump parameters
+    if (typeof targetPath != 'string' && (! (targetPath instanceof String))) {
+        callback = typeof targetPath == 'function' ? targetPath : opts;
+        opts = typeof targetPath == 'function' ? {} : targetPath;
         targetPath = this.srcPath;
+        
         updatePackageData = true;
     }
-    
-    
+
     // load the package.json file from the specified directory
     fs.readFile(path.join(targetPath, 'package.json'), 'utf8', function(err, data) {
         // if we read the file successfully, then parse it
