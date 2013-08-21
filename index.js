@@ -312,22 +312,17 @@ Scaffolder.prototype.loadActions = function(opts, callback) {
 };
 
 /**
-  #### loadPackage(targetPath, opts, callback)
+  #### loadPackage(opts, callback)
 
 **/
-Scaffolder.prototype.loadPackage = function(targetPath, opts, callback) {
+Scaffolder.prototype.loadPackage = function(opts, callback) {
   var scaffolder = this;
-  var updatePackageData = false;
-  var packagePath = path.join(targetPath, 'package.json');
+  var packagePath = path.join(this.srcPath, 'package.json');
   var packageData;
 
-  // if the target path is not a string, then bump parameters
-  if (typeof targetPath != 'string' && (! (targetPath instanceof String))) {
-    callback = typeof targetPath == 'function' ? targetPath : opts;
-    opts = typeof targetPath == 'function' ? {} : targetPath;
-    targetPath = this.srcPath;
-    
-    updatePackageData = true;
+  if (typeof opts == 'function') {
+    callback = opts;
+    opts = {};
   }
 
   // load the package.json file from the specified directory
@@ -335,20 +330,14 @@ Scaffolder.prototype.loadPackage = function(targetPath, opts, callback) {
     // if we read the file successfully, then parse it
     if (! err) {
       try {
-        packageData = JSON.parse(data);
+        scaffolder.packageData = JSON.parse(data);
       }
       catch(e) {
         err = new Error('Unable to parse package.json');
       }
     }
     
-    // if we are using the core package data (sourced from this.srcPath)
-    // then update now
-    if (packageData && updatePackageData) {
-      scaffolder.packageData = packageData;
-    }
-    
-    callback(err, packageData);
+    callback(err, scaffolder.packageData);
   });
 };
 
