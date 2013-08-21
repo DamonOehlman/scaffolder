@@ -1,10 +1,7 @@
 {
   "name": "scaffolder",
   "description": "Helpers for making apps that scaffold stuff",
-  "tags": [
-    "scaffold"
-  ],
-  "author": "Damon Oehlman <damon.oehlman@sidelab.com>",
+  "author": "Damon Oehlman <damon.oehlman@gmail.com>",
   "version": "0.8.0",
   "dependencies": {
     "async": "0.2.x",

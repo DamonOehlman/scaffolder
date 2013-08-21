@@ -8,10 +8,7 @@ progress, and pull requests are definitely welcome.
 [![NPM](https://nodei.co/npm/scaffolder.png)](https://nodei.co/npm/scaffolder/)
 
 [![Build Status](https://travis-ci.org/DamonOehlman/scaffolder.png?branch=master)](https://travis-ci.org/DamonOehlman/scaffolder)
-[![experimental](http://hughsk.github.io/stability-badges/dist/experimental.svg)](http://github.com/hughsk/stability-badges)
-
-[![browser support](https://ci.testling.com/DamonOehlman/scaffolder.png)](https://ci.testling.com/DamonOehlman/scaffolder)
-
+[![unstable](http://hughsk.github.io/stability-badges/dist/unstable.svg)](http://github.com/hughsk/stability-badges)
 
 ## Overview
 
@@ -169,7 +166,7 @@ __deprecated__
 
 ### MIT
 
-Copyright (c) 2013 Damon Oehlman <damon.oehlman@sidelab.com>
+Copyright (c) 2013 Damon Oehlman <damon.oehlman@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
