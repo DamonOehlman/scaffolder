@@ -1,6 +1,0 @@
-.. _Node.js: http://nodejs.org
-.. _node.js: http://nodejs.org
-.. _nopt: https://github.com/isaacs/nopt
-.. _Squirrel: https://github.com/DamonOehlman/squirrel
-.. _NPM: http://npmjs.org
-.. _docstar: https://github.com/DamonOehlman/docstar
