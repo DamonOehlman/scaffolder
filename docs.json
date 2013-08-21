@@ -1,0 +1,10 @@
+{
+  "badges": {
+    "nodeico": true,
+    "travis": true,
+    "stability": "experimental",
+    "testling": true
+  },
+
+  "license": {}
+}

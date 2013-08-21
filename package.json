@@ -6,17 +6,14 @@
   ],
   "author": "Damon Oehlman <damon.oehlman@sidelab.com>",
   "version": "0.7.1",
-  "engines": {
-    "node": ">= 0.6.x < 0.9.0"
-  },
   "dependencies": {
     "async": "0.2.x",
     "debug": "*",
     "nopt": "2.1.x",
-    "out": "0.4.x",
+    "out": "0.5.x",
     "read": "1.0.x",
-    "squirrel": "0.1.x",
-    "underscore": "1.4.x",
+    "squirrel": "~0.2.1",
+    "underscore": "1.5.x",
     "underscore.string": "2.3.x"
   },
   "pluginDependencies": {
@@ -24,7 +21,7 @@
     "ncp": "0.4.2"
   },
   "devDependencies": {
-    "mocha": "1.8.x"
+    "mocha": "1.12.x"
   },
   "repository": {
     "type": "git",
@@ -34,8 +31,19 @@
     "url": "http://github.com/DamonOehlman/scaffolder/issues"
   },
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha --reporter spec --timeout 10000"
+    "lint": "jshint index.js && jshint plugins/*.js",
+    "test": "$(npm bin)/mocha --reporter spec --timeout 10000",
+    "gendocs": "gendocs > README.md"
   },
-  "contributors": [],
-  "optionalDependencies": {}
+  "optionalDependencies": {},
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "keywords": [
+    "scaffold",
+    "cli"
+  ],
+  "license": "MIT"
 }
