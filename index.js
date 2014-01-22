@@ -83,7 +83,7 @@ var coreCommands = {
 
   A CLI application built using scaffolder will likely be powered by a number
   of command handlers.  A command handler is simply a node module (usually
-  located in the `lib/commands` folder for the project) that provides a
+  located in the `./commands` folder for the project) that provides a
   number of exports that make the command work.  In the simplest case a
   command handler will look like this:
 
@@ -228,7 +228,7 @@ function Scaffolder(opts) {
       
       // initialise the default command path
       scaffolder.commandPath = opts.commandPath ||
-        path.resolve(srcPath, 'lib', 'commands');
+        path.resolve(srcPath, 'commands');
       
       // initialise the scaffolder srcPath
       scaffolder.srcPath = srcPath;
