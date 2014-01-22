@@ -58,7 +58,7 @@ of how nopt works will be helpful.
 
 A CLI application built using scaffolder will likely be powered by a number
 of command handlers.  A command handler is simply a node module (usually
-located in the `lib/commands` folder for the project) that provides a
+located in the `./commands` folder for the project) that provides a
 number of exports that make the command work.  In the simplest case a
 command handler will look like this:
 
@@ -166,7 +166,7 @@ __deprecated__
 
 ### MIT
 
-Copyright (c) 2013 Damon Oehlman <damon.oehlman@gmail.com>
+Copyright (c) 2014 Damon Oehlman <damon.oehlman@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
