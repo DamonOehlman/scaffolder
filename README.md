@@ -7,8 +7,7 @@ progress, and pull requests are definitely welcome.
 
 [![NPM](https://nodei.co/npm/scaffolder.png)](https://nodei.co/npm/scaffolder/)
 
-[![Build Status](https://travis-ci.org/DamonOehlman/scaffolder.png?branch=master)](https://travis-ci.org/DamonOehlman/scaffolder)
-[![unstable](http://hughsk.github.io/stability-badges/dist/unstable.svg)](http://github.com/hughsk/stability-badges)
+[![unstable](https://img.shields.io/badge/stability-unstable-yellowgreen.svg)](https://github.com/badges/stability-badges) [![Build Status](https://img.shields.io/travis/DamonOehlman/scaffolder.svg?branch=master)](https://travis-ci.org/DamonOehlman/scaffolder) 
 
 ## Overview
 
