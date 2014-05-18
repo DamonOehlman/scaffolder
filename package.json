@@ -4,21 +4,21 @@
   "author": "Damon Oehlman <damon.oehlman@gmail.com>",
   "version": "0.9.1",
   "dependencies": {
-    "async": "0.2.x",
+    "async": "~0.9",
     "debug": "*",
-    "nopt": "2.1.x",
-    "out": "0.5.x",
-    "read": "1.0.x",
-    "squirrel": "~0.2.1",
-    "underscore": "1.5.x",
-    "underscore.string": "2.3.x"
+    "nopt": "^2",
+    "out": "~0.5",
+    "read": "^1",
+    "squirrel": "~0.2",
+    "underscore": "^1",
+    "underscore.string": "^2"
   },
   "pluginDependencies": {
-    "mkdirp": "0.3.x",
-    "ncp": "0.4.2"
+    "mkdirp": "~0.5",
+    "ncp": "~0.5"
   },
   "devDependencies": {
-    "mocha": "~1.17.0"
+    "mocha": "^1"
   },
   "repository": {
     "type": "git",
