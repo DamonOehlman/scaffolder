@@ -29,7 +29,7 @@
   },
   "scripts": {
     "lint": "jshint index.js && jshint plugins/*.js",
-    "test": "$(npm bin)/mocha --reporter spec --timeout 10000",
+    "test": "mocha --reporter spec -t 10s",
     "gendocs": "gendocs > README.md"
   },
   "optionalDependencies": {},
