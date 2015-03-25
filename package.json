@@ -2,7 +2,7 @@
   "name": "scaffolder",
   "description": "Helpers for making apps that scaffold stuff",
   "author": "Damon Oehlman <damon.oehlman@gmail.com>",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "stability": "unstable",
   "dependencies": {
     "async": "~0.9",
