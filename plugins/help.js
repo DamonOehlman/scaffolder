@@ -33,7 +33,7 @@ module.exports = function(commandList, callback) {
           return callback(err);
         }
 
-        callback(null, _.template(data, {
+        callback(null, _.template(data)({
           packageData: scaffolder.packageData,
           lineBreak: '=========================================================================',
           commands: scaffolder.commands
