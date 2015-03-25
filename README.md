@@ -7,7 +7,7 @@ progress, and pull requests are definitely welcome.
 
 [![NPM](https://nodei.co/npm/scaffolder.png)](https://nodei.co/npm/scaffolder/)
 
-[![unstable](https://img.shields.io/badge/stability-unstable-yellowgreen.svg)](https://github.com/badges/stability-badges) [![Build Status](https://img.shields.io/travis/DamonOehlman/scaffolder.svg?branch=master)](https://travis-ci.org/DamonOehlman/scaffolder) 
+[![unstable](https://img.shields.io/badge/stability-unstable-yellowgreen.svg)](https://github.com/dominictarr/stability#unstable) [![Build Status](https://img.shields.io/travis/DamonOehlman/scaffolder.svg?branch=master)](https://travis-ci.org/DamonOehlman/scaffolder) 
 
 ## Overview
 
@@ -99,13 +99,13 @@ an options object.  The defaults of this options object are shown below:
 require('scaffolder')({
   // an array of default command strings that will attempt to
   // be invoked if no options are provided
-  defaultCommands: [],  
+  defaultCommands: [],
 
-  // provide any default args that individual commands 
+  // provide any default args that individual commands
   // will incorporate / overwrite
   defaultArgs: {},
 
-  // default nopt shorthand options 
+  // default nopt shorthand options
   defaultShorthand: {},
 
   // the path the scaffolder commands will be loaded from
@@ -165,7 +165,7 @@ __deprecated__
 
 ### MIT
 
-Copyright (c) 2014 Damon Oehlman <damon.oehlman@gmail.com>
+Copyright (c) 2015 Damon Oehlman <damon.oehlman@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
